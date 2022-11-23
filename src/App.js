@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import CreatePost from "./components/CreatePost";
 import Home from "./components/Home";
 import ListPosts from "./components/ListPosts";
 
@@ -15,7 +16,10 @@ function App() {
           </li>
         </ul>
         <Switch>
-          <Route path="/posts">
+          <Route exact path="/posts/create">
+            <CreatePost />
+          </Route>
+          <Route exact path="/posts">
             <ListPosts />
           </Route>
           <Route exact path="/">
