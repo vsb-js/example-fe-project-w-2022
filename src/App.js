@@ -1,19 +1,27 @@
+import { useEffect, useState } from "react";
+
 function App() {
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    let ignore = false;
+    fetch("http://localhost:8080/v1/posts")
+      .then((streamResponse) => streamResponse.json())
+      .then((jsonResponse) => {
+        if (!ignore) {
+          setPosts(jsonResponse.posts);
+        }
+      });
+    return () => (ignore = true);
+  });
+
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ul>
+        {posts.map((post) => {
+          return <li>{post.title}</li>;
+        })}
+      </ul>
     </div>
   );
 }
