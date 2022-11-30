@@ -1,11 +1,12 @@
 import { useHistory } from "react-router-dom";
+import { apiURL } from "../config";
 
 export default function CreatePost() {
   const history = useHistory();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    fetch("http://localhost:8080/v1/posts", {
+    fetch(`${apiURL}/v1/posts`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

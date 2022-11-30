@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { apiURL } from "../config";
 
 export default function ListPosts() {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     let ignore = false;
-    fetch("http://localhost:8080/v1/posts")
+    fetch(`${apiURL}/v1/posts`)
       .then((streamResponse) => streamResponse.json())
       .then((jsonResponse) => {
         console.log(jsonResponse);
